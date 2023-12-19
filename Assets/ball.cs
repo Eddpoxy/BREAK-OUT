@@ -12,6 +12,7 @@ public class ball : MonoBehaviour
     int score = 0;
     [SerializeField]
     GameObject livtext;
+    public bool GameOver;
 
     [SerializeField]
     AudioClip Hit;
@@ -34,8 +35,8 @@ public class ball : MonoBehaviour
         rb.velocity = new Vector3(0, -100, 0);
         liv = 3;
         score = 0;
-        textcomponent.text = "Jag vet var du bor"; 
-        
+        textcomponent.text = "Jag vet var du bor";
+        GameOver = false;
     }
 
     // Update is called once per frame
@@ -55,6 +56,7 @@ public class ball : MonoBehaviour
             textcomponent.text = "GAMEOVER";
             AudioSource.PlayClipAtPoint(Death, transform.position);
             Destroy(gameObject);
+            GameOver = true;
         }
     }
     private void OnCollisionEnter(Collision collision)
